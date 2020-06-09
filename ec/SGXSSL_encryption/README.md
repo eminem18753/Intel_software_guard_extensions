@@ -1,0 +1,5 @@
+	The code "Enclave.cpp" in the Enclave folder can initialize the logistic enclave and generate a public key. What's more, it enables App.cpp to get the public key length so as to make the encryption of the dataset work.
+	I decide to let the client request a public key first, and then the enclave will generate a public/private key pair.  The public one will be sent to the client, where the client will use it to encrypt the dataset.  While, the server will later call the enclave to use the private key stored inside to decrypt the dataset and feed them it into the logistic_training_regression(in the same function), hoIver it doesn't work yet. I've tried to modify the client code from python to c, nevertheless, it still doesn't work.
+	If I decrypt the dataset and train the data in the same enclave function, there is no way that a server can get the dataset except the public key swap(I need a trusted remote server to deal with this problem).
+
+The functions that implement our ideas are in "Enclave.cpp" in the Enclave folder.

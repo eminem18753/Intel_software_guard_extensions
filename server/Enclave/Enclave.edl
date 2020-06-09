@@ -1,0 +1,14 @@
+enclave {
+    from "Sealing/Sealing.edl" import *;
+
+    trusted {
+        /* define ECALLs here. */
+        public int generate_random_number(void);
+	public void train_logistic_regression1([in,count=data_len] float* data,[in,count=data_rows] int* labels,float lr,int iter,unsigned int data_rows,unsigned int data_cols,unsigned int data_len,[out,count=data_cols]float * weights);
+    };
+
+    untrusted {
+        /* define OCALLs here. */
+        void ocall_print([in, string]const char* str);
+    };
+};

@@ -1,0 +1,19 @@
+enclave {
+    from "Sealing/Sealing.edl" import *;
+    from "sgx_tsgxssl.edl" import *; // From the Intel SGX SSL Linux Developer Guide.
+
+    trusted {
+        /* define ECALLs here. */
+        public int generate_random_number(void);
+	public void train_logistic_regression1([in,count=data_len] unsigned char * data,float lr,int iter,unsigned int data_rows,unsigned int data_cols,unsigned int data_len,[out,count=data_cols]float * weights);
+	public void init_logistic_enclave(void);
+	public int get_public_key_length(void);
+	public void get_public_key([out, count=len] unsigned char * ptr, int len);
+	public void destroy_logistic_enclave();
+    };
+
+    untrusted {
+        /* define OCALLs here. */
+        void ocall_print([in, string]const char* str);
+    };
+};
